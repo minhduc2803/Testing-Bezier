@@ -1,0 +1,16 @@
+io/practice/Stroke.java
+ io.practice.Stroke
+io/practice/preprocess.java
+ io.practice.preprocess
+io/practice/mathplot.java
+ io.practice.mathplot
+io/practice/substroke.java
+ io.practice.substroke
+io/practice/ops.java
+ io.practice.ops
+io/practice/main.java
+ io.practice.main
+io/practice/Optimize.java
+ io.practice.Optimize
+io/practice/Bezier.java
+ io.practice.Bezier

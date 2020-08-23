@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation 'org.ojalgo:ojalgo:48.2.0'
+    //    compile group: 'com.github.yannrichet', name: 'JMathPlot', version: '1.0.1'
+    compile 'com.github.yannrichet:JMathPlot:1.0.1'
+    // https://mvnrepository.com/artifact/org.jdom/jdom
+    compile group: 'org.jdom', name: 'jdom', version: '2.0.0'
+
+}
