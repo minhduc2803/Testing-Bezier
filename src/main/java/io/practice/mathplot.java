@@ -27,6 +27,7 @@ public class mathplot {
         // add a line plot to the PlotPanel
         plot2d.addLinePlot("my plot", x, y);
 
+
         // put the PlotPanel in a JFrame, as a JPanel
 
     }
@@ -56,9 +57,11 @@ public class mathplot {
         return xy;
     }
 
-    public void show(Plot2DPanel plot, String order) {
+    public JFrame show(Plot2DPanel plot, String order) {
         JFrame frame = new JFrame("plot number: "+order);
         frame.setContentPane(plot);
+        frame.setBounds(100,200,1200,800);
         frame.setVisible(true);
+        return frame;
     }
 }

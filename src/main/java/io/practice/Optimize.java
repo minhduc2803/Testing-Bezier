@@ -1,6 +1,6 @@
 package io.practice;
 
-import org.ojalgo.matrix.Primitive32Matrix;
+import org.ojalgo.matrix.Primitive64Matrix;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class Optimize {
     double [] sinit;//[1,s,s2,s3]
     double[][] S;
     int N;
-    int epoch=2;
+    int epoch=6;
     int col =4;
     double[][] invB;
     double[][] cofficience;
@@ -20,6 +20,7 @@ public class Optimize {
         createSinit(N);
 //        ops.printsinit(sinit);
         invertmatrixB();
+
         this.S = new double [N][this.col];
         this.cofficience = new double[this.col][2];
 
@@ -49,9 +50,9 @@ public class Optimize {
                 {-3,3,0,0},
                 {3,-6,3,0},
                 {-1,3,-3,1}};
-        Primitive32Matrix.Factory matrixFactory = Primitive32Matrix.FACTORY;
-        Primitive32Matrix matrixB = matrixFactory.rows(B);
-        Primitive32Matrix invb = matrixB.invert();
+        Primitive64Matrix.Factory matrixFactory = Primitive64Matrix.FACTORY;
+        Primitive64Matrix matrixB = matrixFactory.rows(B);
+        Primitive64Matrix invb = matrixB.invert();
 
         for(int i=0; i<4;i++){
             for(int j=0;j<4;j++){
@@ -62,9 +63,9 @@ public class Optimize {
     }
     double[][] invertmatrix(){
         double[][] pinvS =new double[this.col][this.N];
-        Primitive32Matrix.Factory matrixFactory = Primitive32Matrix.FACTORY;
-        Primitive32Matrix matrixS = matrixFactory.rows(S);
-        Primitive32Matrix pseudoinv = matrixS.invert();
+        Primitive64Matrix.Factory matrixFactory = Primitive64Matrix.FACTORY;
+        Primitive64Matrix matrixS = matrixFactory.rows(S);
+        Primitive64Matrix pseudoinv = matrixS.invert();
         for(int i=0; i<col;i++){
             for(int j=0;j<N;j++){
                 pinvS[i][j] = pseudoinv.get(i,j);
@@ -149,7 +150,7 @@ public class Optimize {
         for(int i = 0; i<epoch;i++){
             createSmatrix();
             findcof( datapoint, str);
-            for (int j =0; j<1;j++){
+            for (int j =0; j<35;j++){
                 NewtonMethod(str, datapoint);
             }
         }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class preprocess {
 
-    public List<Stroke> DataObject (List<ArrayList<double[]>> allstroke){
+    public List<Stroke> DataObject(List<ArrayList<double[]>> allstroke){
         int L = allstroke.size();
         for(int i =0 ; i<L;i++){
             allstroke.set(i,removeduplicate(allstroke.get(i)));

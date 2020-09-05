@@ -9,7 +9,7 @@ public class Stroke {
     ArrayList<Double> argctwo;
 
     Stroke(ArrayList<double[]> datapoint,ArrayList<Double> ratio,ArrayList<Double> argctwo){
-        this.datapoint =datapoint;
+        this.datapoint =datapoint;// datapoint in one stroke
         this.ratio = ratio;
         this.argctwo =  argctwo;
     }
@@ -19,6 +19,7 @@ public class Stroke {
         ArrayList<substroke> allbezier = new ArrayList<>();
 //        boolean flag = true;
         int n = sub.endpoint-sub.startpoint+1;
+
         Optimize opts = new Optimize(n);
         if(n>11) {
             if(ifTooSharp(sub)) {
@@ -132,13 +133,14 @@ public class Stroke {
     }
     ArrayList<substroke> splitIftoosharp(substroke str){
         // find min in ratio
-        double min = this.ratio.get(str.startpoint+4);
-        int indexOfSplit =0;
-        for(int i= str.startpoint+4; i< str.endpoint-1-3;i++){
-            if(Stroke.this.ratio.get(i)<min){
+        int indexOfSplit =str.startpoint+5;
+
+        for(int i= indexOfSplit; i< str.endpoint-5;i++){
+            if(this.ratio.get(i) < this.ratio.get(indexOfSplit)){
                 indexOfSplit = i;
             }
         }
+        indexOfSplit ++;
         ArrayList<substroke> subcurves = new ArrayList<>();
         subcurves.add(new substroke(str.startpoint,indexOfSplit));
         subcurves.add(new substroke(indexOfSplit,str.endpoint));
@@ -147,13 +149,14 @@ public class Stroke {
 
 
     ArrayList<substroke> splitByLoss(substroke str){
-        double max = this.ratio.get(str.startpoint+4);
-        int indexOfSplit =0;
-        for(int i= str.startpoint+4; i< str.endpoint-1-3;i++){
-            if(this.ratio.get(i)>max){
+        int indexOfSplit =str.startpoint+5;
+
+        for(int i= indexOfSplit; i< str.endpoint-5;i++){
+            if(this.ratio.get(i) > this.ratio.get(indexOfSplit)){
                 indexOfSplit = i;
             }
         }
+        indexOfSplit ++;
         ArrayList<substroke> subcurves = new ArrayList<>();
         subcurves.add(new substroke(str.startpoint,indexOfSplit));
         subcurves.add(new substroke(indexOfSplit,str.endpoint));
